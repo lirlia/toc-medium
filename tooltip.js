@@ -10,7 +10,8 @@
 
   const generate = () => {
     const headingList = [...document.querySelectorAll("h3[name], h4[name]")];
-
+    let bigCount = 0;
+    let smallCount = 1;
     return headingList
       .filter(
         (headingTag) =>
@@ -21,16 +22,22 @@
         let bullet;
         switch (headingTag.tagName.toLowerCase()) {
           case "h1":
+            break;
           case "h2":
+            break;
           case "h3":
-            bullet = `◆ `;
+            console.log(headingTag);
+            bullet = "";
+            bigCount++;
+            smallCount=1;
             break;
           case "h4":
-            bullet = ` - `;
+            bullet = `${bigCount}.${smallCount} `;
+            smallCount++;
             break;
         }
 
-        return `${bullet} <a href="#${headingTag.getAttribute(
+        return `${bullet}<a href="#${headingTag.getAttribute(
           "name"
         )}" title="${headingTag.textContent}">${headingTag.textContent}</a>`;
       });
@@ -61,7 +68,8 @@
       const container = document.querySelector(".is-selected");
       tooltipToggleMenu.click();
 
-      container.innerHTML = generate().join("<br/>");
+      container.innerHTML = `＜目次＞${generate().join("<br/>")}`;
+      // container.innerHTML = `generate().join("<br/>");
 
       setTimeout(() => {
         simulateKeydown(container, 13);
