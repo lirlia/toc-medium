@@ -23,10 +23,10 @@
           case "h1":
           case "h2":
           case "h3":
-            bullet = `·`;
+            bullet = `◆ `;
             break;
           case "h4":
-            bullet = `  ∘`;
+            bullet = ` - `;
             break;
         }
 
